@@ -1,8 +1,7 @@
 from src.channel import Channel
 
 if __name__ == '__main__':
-    moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
-
+    moscowpython = Channel('UCUGfDbfRIx51kJGGHIFo8Rw')
     # получаем значения атрибутов
     print(moscowpython.title)  # MoscowPython
     print(moscowpython.video_count)  # 685 (может уже больше)
