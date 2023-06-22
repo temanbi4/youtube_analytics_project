@@ -7,7 +7,7 @@ class Channel:
 
     api_key: str = os.getenv('YT_API_KEY')
 
-    def __init__(self, channel_id: str) -> None:
+    def __init__(self, channel_id: str):
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.__channel_id = channel_id
         self.channel = self.get_service().channels().list(id=self.__channel_id, part='snippet,statistics').execute()
