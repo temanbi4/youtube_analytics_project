@@ -8,12 +8,28 @@ class Video:
     api_key: str = os.getenv('YT_API_KEY')
 
     def __init__(self, video_id):
-        self.__video_id = video_id
-        video = self.get_service().videos().list(part='snippet,statistics,contentDetails,topicDetails', id=self.__video_id).execute()
-        self.video_title = self.get_info()['items'][0]['snippet']['title']
-        self.video_url = ''.join(['https://www.youtube.com/watch?v=', self.__video_id])
-        self.views_counter = self.get_info()['items'][0]['statistics']['viewCount']
-        self.likes_counter = self.get_info()['items'][0]['statistics']['likeCount']
+        try:
+            self.__video_id = video_id
+            video = self.get_service().videos().list(part='snippet,statistics,contentDetails,topicDetails', id=self.__video_id).execute()
+            self.video_title = self.get_info()['items'][0]['snippet']['title']
+            self.video_url = ''.join(['https://www.youtube.com/watch?v=', self.__video_id])
+            self.views_counter = self.get_info()['items'][0]['statistics']['viewCount']
+            self.likes_counter = self.get_info()['items'][0]['statistics']['likeCount']
+        except IndexError:
+            self.video_title = None
+            self.video_url = None
+            self.views_counter = None
+            self.likes_counter = None
+        except AttributeError:
+            self.video_title = None
+            self.video_url = None
+            self.views_counter = None
+            self.likes_counter = None
+        except TypeError:
+            self.video_title = None
+            self.video_url = None
+            self.views_counter = None
+            self.likes_counter = None
 
     def __str__(self):
         return self.video_title
